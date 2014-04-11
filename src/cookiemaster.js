@@ -38,7 +38,7 @@ CM.config = {
     ///////////////////////////////////////////////
 
     version:              '1.17.1',                         // Current version of CookieMaster
-    ccCompatibleVersions: ['1.0411'],                       // Known compatible versions of Cookie Clicker
+    ccCompatibleVersions: ['1.0453'],                       // Known compatible versions of Cookie Clicker
     cmRefreshRate:        1000,                             // Refresh rate for main game loop
     cmFastRefreshRate:    200,                              // Refresh rate for title ticker and audio alerts
     cmCheckUpdateRate:    1800000,                          // How often to check for updates (default 30 minutes)
@@ -827,7 +827,7 @@ CM.init = function() {
     // Refresh tooltips when drawn
     Game.tooltip.draw = this.appendToNative(Game.tooltip.draw, CM.updateTooltips);
     // Refresh tooltips on store rebuild
-    Game.RebuildStore = this.appendToNative(Game.RebuildStore, CM.updateTooltips);
+    Game.RebuildUpgrades = this.appendToNative(Game.RebuildUpgrades, CM.updateTooltips);
 
     /**
      * Initialize the main game loop
@@ -4010,7 +4010,6 @@ CM.applyUserSettings = function() {
     }
 
     // Refresh the game panels
-    Game.RebuildStore();
     Game.RebuildUpgrades();
 
 };
@@ -4409,7 +4408,6 @@ CM.setupTooltips = function() {
 
     // Rebuild game elements
     Game.RebuildUpgrades();
-    Game.RebuildStore();
 };
 
 /**
@@ -4606,9 +4604,10 @@ var gameReadyStateCheckInterval = setInterval(function() {
              * Pause the auto-clicker during reset to prevent cookies
              * being given to a reset game
              */
+            debugger;
             CM.replaceNative('Reset', {
-                'if (bypass': 'CM.clearAutoClicker();if (bypass',
-                'Game.Popup(\'Game reset\');': 'if(CM.config.settings.autoClick.current === \'on\') {setTimeout(function(){CM.startAutoClicker();}, 1000);}Game.Popup(\'Game reset\');'
+                'if (!bypass': 'CM.clearAutoClicker();if (!bypass',
+                'Game.Popup(\'Game reset\');': '{if(CM.config.settings.autoClick.current === \'on\') {setTimeout(function(){CM.startAutoClicker();}, 1000);}Game.Popup(\'Game reset\');}'
             }, 'bypass');
 
             /**

@@ -3,7 +3,7 @@
   "version": "1.17.1",
   "author": "Chris Green",
   "private": true,
-  "cookieMasterURL": "http://cookiemaster.co.uk",
+  "cookieMasterURL": "http://localhost/cookiemaster",
   "cookieClickerURL": "http://orteil.dashnet.org/cookieclicker/",
   "devDependencies": {
     "grunt": "~0.4.0",

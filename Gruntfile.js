@@ -130,7 +130,7 @@ module.exports = function(grunt) {
          */
         replace: {
             paths: {
-                src: 'dist/cookiemaster.min.js',
+                src: 'build/cookiemaster.js',
                 overwrite: true,
                 replacements: [
                     {
@@ -144,13 +144,13 @@ module.exports = function(grunt) {
                 ]
             },
             min: {
-                src: ['dist/cm-bootstrap.min.js'],
+                src: ['build/cm-bootstrap.js'],
                 overwrite: true,
                 replacements: [
                     {
                         from: '../cookiemaster',
                         to:   '<%= pkg.cookieMasterURL %>'
-                    },
+                    }/*,
                     {
                         from: 'build/cookiemaster.js',
                         to:   'dist/cookiemaster.min.js'
@@ -158,16 +158,16 @@ module.exports = function(grunt) {
                     {
                         from: 'build/cookiemaster.css',
                         to:   'dist/cookiemaster.min.css'
-                    }
+                    }*/
                 ]
             },
             bm: {
-                src: ['dist/bookmarklet.js'],
+                src: ['build/bookmarklet.js'],
                 overwrite: true,
                 replacements: [
                     {
                         from: '../cookiemaster/build/cm-bootstrap.js',
-                        to:   '//cookiemaster.co.uk/b'
+                        to:   '//localhost/cookiemaster/build/cm-bootstrap.js'
                     }
                 ]
             }
